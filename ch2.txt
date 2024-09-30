@@ -1,0 +1,9 @@
+package main // this is required to be called main for the main package
+
+go mod init example.com/first-app
+go build
+./first-app
+
+interative maps
+  FDI Data
+  Infrastructure Opportunity
