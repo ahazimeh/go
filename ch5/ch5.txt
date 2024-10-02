@@ -18,3 +18,28 @@ Struct Literal or Composite Literal
 func (u user) outputUserDetails() {
 	fmt.Println(u.firstName, u.lastName, u.birthdate)
 }
+
+type str string;
+
+function (text str) log() {
+  }
+
+for scanning string with spaces
+  reader := bufio.NewReader(os.Stdin)
+  text, err := reader.ReadString('\n')
+  text = strings.TrimSuffix(text, "\n")
+  text = strings.TrimSuffix(text, "\r") // on windows line break is \r\n
+
+"encoding/json"
+
+
+type Note struct {
+Title      string `json:"title"`
+Content    string
+CreatedAt  string
+  }
+json, err := json.Marshal(note) // notes should have its field publicly available
+
+if err !nil {
+  return;
+}
