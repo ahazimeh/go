@@ -13,3 +13,8 @@ Struct Literal or Composite Literal
     userBirthdate,
     time.Now(),
   }
+
+// (u user) is called receiver
+func (u user) outputUserDetails() {
+	fmt.Println(u.firstName, u.lastName, u.birthdate)
+}
