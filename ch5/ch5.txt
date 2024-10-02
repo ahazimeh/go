@@ -33,6 +33,7 @@ for scanning string with spaces
 "encoding/json"
 
 
+// meta data
 type Note struct {
 Title      string `json:"title"`
 Content    string
