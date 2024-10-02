@@ -11,7 +11,7 @@ import (
 )
 
 type saver interface {
-  Save() error
+	Save() error
 }
 
 /* type displayer interface {
@@ -19,20 +19,24 @@ type saver interface {
 } */
 
 type outputtable interface {
-  saver
-  Display()
+	saver
+	Display()
 }
 
 func main() {
+	printSomething(1)
+	printSomething(1.5)
+	printSomething("Hello")
+
 	title, content := getNoteData()
-  todoText := getUserInput("Todo text: ")
+	todoText := getUserInput("Todo text: ")
 
-  todo, err := todo.New(todoText)
+	todo, err := todo.New(todoText)
 
-  if err !=nil {
-    fmt.Println(err)
-    return;
-  }
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	userNote, err := note.New(title, content)
 
@@ -41,22 +45,58 @@ func main() {
 		return
 	}
 
-  err = outputData(todo)
+	err = outputData(todo)
 
-  if err!=nil {
+	if err != nil {
+		return
+	}
+
+	outputData(userNote)
+}
+
+func printSomething(value interface{}) {
+  intVal, ok :=value.(int)
+
+  if ok {
+		fmt.Println("Integer:", intVal)
     return;
   }
 
-  outputData(userNote)
+  floatVal, ok :=value.(float64)
+
+  if ok {
+		fmt.Println("Float:", floatVal)
+    return;
+  }
+
+  stringVal, ok :=value.(float64)
+
+  if ok {
+		fmt.Println("String:", stringVal)
+    return;
+  }
+
+	/* switch value.(type) {
+	case int:
+		fmt.Println("Integer:", value)
+	case float64:
+		fmt.Println("Float:", value)
+	case string:
+		fmt.Println(value)
+	default:
+		// ...
+	} */
+
+	fmt.Println(value)
 }
 
 func outputData(data outputtable) error {
-  data.Display()
-  return saveData(data)
+	data.Display()
+	return saveData(data)
 }
 
 func saveData(data saver) error {
-  err := data.Save()
+	err := data.Save()
 
 	if err != nil {
 		fmt.Println("Saving the note failed.")
@@ -64,7 +104,7 @@ func saveData(data saver) error {
 	}
 
 	fmt.Println("Saving the note succeeded!")
-  return nil
+	return nil
 }
 
 func getNoteData() (string, string) {
@@ -90,3 +130,4 @@ func getUserInput(prompt string) string {
 
 	return text
 }
+
