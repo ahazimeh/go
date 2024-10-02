@@ -1,0 +1,15 @@
+Struct Literal or Composite Literal
+  var appUser user
+  appUser = user{
+    firstName: userFirstName,
+    lastName: userLastName,
+    birthdate: userBirthdate,
+    createdAt: time.Now(),
+  }
+  // shorter notation
+  appUser = user{
+    userFirstName,
+    userLastName,
+    userBirthdate,
+    time.Now(),
+  }
