@@ -12,3 +12,9 @@ slices:
 
   prices = append(prices, 5.99) // go will create a new array and add this element to the new array
   fmt.Println(prices)
+  // I can extend a slice if it has some values to the right available
+  mainHobbies = mainHobbies[1:3]
+  // merge 2 slices
+  prices = append(prices, discountPrices...)
+
+
