@@ -1,0 +1,4 @@
+https://pkg.go.dev/
+go get github.com/Pallinder/go-randomdata
+
+go get to download all dependencies
