@@ -20,6 +20,11 @@ func (u user) outputUserDetails() {
 	fmt.Println((*u).firstName, u.lastName, u.birthdate)
 } */
 
+func (u *user) clearUserName() {
+  u.firstName = ""
+  u.lastName = ""
+}
+
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
@@ -36,6 +41,8 @@ func main() {
 
 	// ... do something awesome with that gathered data!
 
+  appUser.outputUserDetails()
+  appUser.clearUserName()
   appUser.outputUserDetails()
 }
 
