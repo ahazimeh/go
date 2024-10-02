@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-  "time"
+	"time"
 )
 
 type user struct {
-  firstName string
-  lastName string
-  birthdate string
-  createdAt time.Time
+	firstName string
+	lastName  string
+	birthdate string
+	createdAt time.Time
 }
 
 func (u user) outputUserDetails() {
@@ -21,8 +21,17 @@ func (u user) outputUserDetails() {
 } */
 
 func (u *user) clearUserName() {
-  u.firstName = ""
-  u.lastName = ""
+	u.firstName = ""
+	u.lastName = ""
+}
+
+func newUser(firstName, lastName, birthdate string) *user {
+	return &user{
+		firstName: firstName,
+		lastName:  lastName,
+		birthdate: birthdate,
+		createdAt: time.Now(),
+	}
 }
 
 func main() {
@@ -30,20 +39,14 @@ func main() {
 	userLastName := getUserData("Please enter your last name: ")
 	userBirthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
-  var appUser user
-
-  appUser = user{
-    userFirstName,
-    userLastName,
-    userBirthdate,
-    time.Now(),
-  }
+	var appUser *user
+  appUser = newUser(userFirstName, userLastName, userBirthdate)
 
 	// ... do something awesome with that gathered data!
 
-  appUser.outputUserDetails()
-  appUser.clearUserName()
-  appUser.outputUserDetails()
+	appUser.outputUserDetails()
+	appUser.clearUserName()
+	appUser.outputUserDetails()
 }
 
 func getUserData(promptText string) string {
