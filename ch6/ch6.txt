@@ -1,0 +1,17 @@
+// interface with 1 method as convension is typically called the name of method ending with er
+type saver interface {
+  Save() error
+}
+
+func saveData(data saver) {
+}
+
+
+// embedded interfaces
+type saver interface {
+  Save() error
+}
+type outputtable interface {
+  saver
+  Display()
+}
