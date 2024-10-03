@@ -3,19 +3,18 @@ package main
 import "fmt"
 
 func main() {
-	numbers := []int{1, 2, 3}
+	numbers := []int{1, 15, 10}
+	sum := sumup(1, numbers...)
 
-	transformed := transformNumbers(&numbers, ???)
-
-	fmt.Println(transformed)
+	fmt.Println(sum)
 }
 
-func transformNumbers(numbers *[]int, transform func(int) int) []int {
-	dNumbers := []int{}
+func sumup(startingValue int, numbers ...int) int {
+	println(startingValue)
+	sum := 0
 
-	for _, val := range *numbers {
-		dNumbers = append(dNumbers, transform(val))
+	for _, val := range numbers {
+		sum += val
 	}
-
-	return dNumbers
+	return sum
 }
