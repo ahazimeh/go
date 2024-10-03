@@ -18,3 +18,18 @@ slices:
   prices = append(prices, discountPrices...)
 
 
+userNames := make([]string, 2, 5) // 2 is length, 5 is capacity, when we need more space then go will add another 5 capacity
+courseRatings := make(map[string]float64, 3)
+
+courseRatings := make(map[string]float64, 3)
+alternatively:
+  type floatMap map[string]float64
+  courseRatings := make(floatMap, 3)
+
+// for array and maps // you can name it key instead of index for better naming when iterating over a map
+for index, value := range userNames {
+  fmt.Println("Index:", index)
+  fmt.Println("Value:", value)
+}
+
+

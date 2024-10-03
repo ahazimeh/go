@@ -1,4 +1,4 @@
-package main
+package lists
 
 import "fmt"
 
@@ -13,6 +13,7 @@ func main() {
 
   discountPrices := []float64{100.10, 80.99, 20.59}
   prices = append(prices, discountPrices...)
+  fmt.Println(prices)
 }
 
 /* func main() {
