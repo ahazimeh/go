@@ -1,0 +1,4 @@
+functions are first class values
+	doubled := transformNumbers(&numbers,double)
+  func transformNumbers(numbers *[]int, transform func(int) int) []int {}
+  you can also make a function that returns another function reference
