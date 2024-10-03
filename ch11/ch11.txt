@@ -1,1 +1,4 @@
 go get -u github.com/gin-gonic/gin
+go get github.com/mattn/go-sqlite3
+
+_ "github.com/mattn/go-sqlite3" // we need this import but we will not use it directly
