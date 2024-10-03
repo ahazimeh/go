@@ -43,3 +43,6 @@ for index, _ := range taxRates {
     fmt.Println("Done!")
   }
 }
+
+
+defer file.Close() // add it once and go will call it when the function execution is done or when an error occurs
