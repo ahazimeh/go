@@ -30,3 +30,16 @@ alternatively: you can use the first approach again and do this
   for range done {
   }
   and on the longest operation run close(doneChan)
+
+
+// wait for multiple channels to emit a value
+for index, _ := range taxRates {
+  select {
+  case err := <-errorChans[index]:
+    if err != nil {
+      fmt.Println(err)
+    }
+  case <-doneChans[index]:
+    fmt.Println("Done!")
+  }
+}
