@@ -1,9 +1,10 @@
 package models
 
 import (
-	"fmt"
+	"errors"
 
 	"example.com/rest-api/db"
+	"example.com/rest-api/utils"
 )
 
 type User struct {
@@ -16,22 +17,46 @@ func (u User) Save() error {
 	query := "INSERT INTO users(email, password) VALUES (?, ?)"
 	stmt, err := db.DB.Prepare(query)
 
-  fmt.Println("userId1")
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
 
-  result, err := stmt.Exec(u.Email,u.Password)
+  hashedPassword, err := utils.HashPassword(u.Password)
 
-  fmt.Println("userId")
+  if err != nil {
+    return err
+  }
+
+  result, err := stmt.Exec(u.Email, hashedPassword)
+
   if err != nil {
     return err
   }
 
   userId, err := result.LastInsertId()
-  fmt.Println(userId)
 
   u.ID = userId
   return err
+}
+
+func (u User) ValidateCredentials() error {
+  query := "SELECT password FROM users WHERE email = ?"
+  row := db.DB.QueryRow(query, u.Email)
+
+  var retrievedPassword string
+  err := row.Scan(&retrievedPassword)
+
+  if err !=nil {
+    return errors.New("Credentials invalid")
+  }
+
+  passwordIsValid := utils.CheckPassowrdHash(u.Password, retrievedPassword)
+
+  if !passwordIsValid {
+    return errors.New("Credentials invalid")
+  }
+
+  return nil
+
 }
