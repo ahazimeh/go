@@ -16,13 +16,13 @@ func InitDB() {
 	}
 
 	DB.SetMaxOpenConns(10) // how many connections can be opened simultaneously
-	DB.SetMaxIdleConns(5) // how many connections we want to keep open if no one is using these connections at the moment
+	DB.SetMaxIdleConns(5)  // how many connections we want to keep open if no one is using these connections at the moment
 
 	createTables()
 }
 
 func createTables() {
-  createUsersTable := `
+	createUsersTable := `
   CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT NOT NULL UNIQUE,
@@ -30,12 +30,12 @@ func createTables() {
   )
   `
 
-  _, err := DB.Exec(createUsersTable)
-  if err !=nil {
-    panic("Could not create users table.");
-  }
+	_, err := DB.Exec(createUsersTable)
+	if err != nil {
+		panic("Could not create users table.")
+	}
 
-  createEventsTable := `
+	createEventsTable := `
   CREATE TABLE IF NOT EXISTS events (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
@@ -47,9 +47,24 @@ func createTables() {
   )
   `
 
-  _, err = DB.Exec(createEventsTable)
+	_, err = DB.Exec(createEventsTable)
+
+	if err != nil {
+		panic("Could not create events table.")
+	}
+
+	createRegistrationTable := `
+  CREATE TABLE IF NOT EXISTS registrations (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  event_id INTEGER,
+  user_id INTEGER,
+  FOREIGN KEY(event_id)REFERENCES events(id),
+  FOREIGN KEY(user_id)REFERENCES users(id)
+  `
+
+	_, err = DB.Exec(createRegistrationTable)
 
   if err != nil {
-    panic("Could not create events table.")
+		panic("Could not create registrations table.")
   }
 }
