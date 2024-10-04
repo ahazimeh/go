@@ -6,5 +6,8 @@ _ "github.com/mattn/go-sqlite3" // we need this import but we will not use it di
 
 stmt, err := db.DB.Prepare(query)
   // when we prepare a query it is stored in memory and then easy reused in highly efficient way
+  // Prepare() prepares a SQL statement - this can lead to better performance if the same statement is executed multiple times (potentially with different data for its placeholders).
 
 exec is used when we want to chanage data in the database
+
+strconv.ParseInt(context.Param("id"), 10, 64)
