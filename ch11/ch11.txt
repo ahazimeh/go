@@ -13,3 +13,5 @@ exec is used when we want to chanage data in the database
 strconv.ParseInt(context.Param("id"), 10, 64)
 
 err.Error() // error message
+
+token.Method.(*jwt.SigningMethodHMAC) // check the whether the value of Method is of that type (*jwt.SigningMethodHMAC)
