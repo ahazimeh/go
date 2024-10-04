@@ -2,3 +2,9 @@ go get -u github.com/gin-gonic/gin
 go get github.com/mattn/go-sqlite3
 
 _ "github.com/mattn/go-sqlite3" // we need this import but we will not use it directly
+
+
+stmt, err := db.DB.Prepare(query)
+  // when we prepare a query it is stored in memory and then easy reused in highly efficient way
+
+exec is used when we want to chanage data in the database
